@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>maliput_drake</name>
+  <version>0.1.0</version>
+  <description>Maliput drake extraction to provide trajectory integration support</description>
+  <maintainer email="daniel.stonier@tri.global">Daniel Stonier</maintainer>
+  <license file="LICENSE">BSD Clause 3</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- See https://github.com/ros2/eigen3_cmake_module/tree/foxy -->
+  <buildtool_depend>eigen3_cmake_module</buildtool_depend>
+  <build_depend>eigen</build_depend>
+  <buildtool_export_depend>eigen3_cmake_module</buildtool_export_depend>
+  <build_export_depend>eigen</build_export_depend>
+
+  <depend>fmt</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

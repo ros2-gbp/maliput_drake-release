@@ -1,0 +1,12 @@
+Source: ros-foxy-maliput-drake
+Section: misc
+Priority: optional
+Maintainer: Daniel Stonier <daniel.stonier@tri.global>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, libfmt-dev, ros-foxy-ament-cmake, ros-foxy-eigen3-cmake-module, ros-foxy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-foxy-maliput-drake
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, libfmt-dev, ros-foxy-eigen3-cmake-module, ros-foxy-ros-workspace
+Description: Maliput drake extraction to provide trajectory integration support

@@ -1,6 +1,7 @@
 name: gcc
 
 on:
+  push:
   pull_request:
     branches:
       - main
@@ -9,7 +10,6 @@ on:
 env:
   PACKAGE_NAME: maliput_drake
   ROS_DISTRO: foxy
-  ROS_WS: maliput_ws
 
 jobs:
   compile_and_test:
@@ -18,24 +18,10 @@ jobs:
     container:
       image: ubuntu:20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+    - uses: ros-tooling/setup-ros@v0.3
+    - uses: ros-tooling/action-ros-ci@v0.2
+      id: action_ros_ci_step
       with:
-        path: ${{ env.ROS_WS }}/src/${{ env.PACKAGE_NAME }}
-    # use setup-ros action to get vcs, rosdep, and colcon
-    - uses: ros-tooling/setup-ros@0.2.1
-    - run: colcon graph
-      shell: bash
-      working-directory: ${{ env.ROS_WS }}
-    - name: rosdep install
-      shell: bash
-      working-directory: ${{ env.ROS_WS }}
-      run: |
-        rosdep update --include-eol-distros;
-        rosdep install  -i -y --rosdistro ${ROS_DISTRO} --from-paths src
-    - name: colcon build
-      shell: bash
-      working-directory: ${{ env.ROS_WS }}
-      run: |
-        . /opt/ros/${ROS_DISTRO}/setup.bash;
-        colcon build --packages-up-to ${PACKAGE_NAME} \
-          --event-handlers=console_direct+
+        package-name: ${{ env.PACKAGE_NAME }}
+        target-ros2-distro: ${{ env.ROS_DISTRO }}
